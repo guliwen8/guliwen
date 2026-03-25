@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build: ./backend
+    container_name: petcare-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://petcare_user:petcare_pass@db:5432/petcare_db
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your_super_secret_key
+    depends_on:
+      - db
+      - redis
+    networks:
+      - petcare-network
+
+  # Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: petcare-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001/v1
+    depends_on:
+      - backend
+    networks:
+      - petcare-network
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: petcare-db
+    environment:
+      - POSTGRES_USER=petcare_user
+      - POSTGRES_PASSWORD=petcare_pass
+      - POSTGRES_DB=petcare_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - petcare-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: petcare-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - petcare-network
+
+networks:
+  petcare-network:
+    driver: bridge
+
+volumes:
+  pgdata:

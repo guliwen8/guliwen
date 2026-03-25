@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: petcare-alerts
+  labels:
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+  - name: petcare.rules
+    rules:
+    - alert: BackendHighErrorRate
+      expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: "High error rate on {{ $labels.instance }}"
+        description: "Backend service error rate is above 5% for more than 2 minutes."
+    - alert: InstanceDown
+      expr: up == 0
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Instance {{ $labels.instance }} down"
+        description: "An instance of the PetCare backend has been down for more than 1 minute."

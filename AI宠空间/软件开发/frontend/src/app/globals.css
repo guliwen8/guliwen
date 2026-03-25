@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 7, 11, 20;
+  --background-end-rgb: 7, 11, 20;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text-1 min-h-screen font-sans;
+    background-image: theme('backgroundImage.hero-gradient');
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .grid-8pt {
+    background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI宠空间 · 用户端高保真</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/tokens.css">
+</head>
+<body class="text-slate-100">
+  <div class="max-w-[1440px] mx-auto p-4 md:p-6 xl:p-8">
+    <header class="token-card p-4 md:p-5 xl:p-6">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-400/20 flex items-center justify-center text-emerald-300"><i class="fa-solid fa-paw"></i></div>
+          <div>
+            <div class="text-base font-bold md:text-lg">AI宠空间</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div id="userProfile" class="hidden items-center gap-3 mr-2">
+            <span id="userName" class="text-sm font-medium text-emerald-300"></span>
+            <button id="logoutBtn" class="text-xs text-slate-400 hover:text-slate-200 underline">退出</button>
+          </div>
+          <div id="authButtons" class="flex items-center gap-2">
+            <button onclick="openAuthModal('login')" class="text-sm font-medium px-4 py-2 rounded-xl border border-slate-600 hover:bg-slate-800 transition-colors">登录</button>
+            <button onclick="openAuthModal('register')" class="text-sm font-medium px-4 py-2 rounded-xl bg-emerald-500 text-slate-900 hover:bg-emerald-400 transition-colors">注册</button>
+          </div>
+          <div class="bp-tag text-xs px-3 py-1 rounded-full border border-slate-600 text-slate-300 ml-2"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+      <div class="token-card w-full max-w-md p-6 relative animate-in fade-in zoom-in duration-300">
+        <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-100"><i class="fa-solid fa-xmark text-xl"></i></button>
+        
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-400/20 flex items-center justify-center text-emerald-300 text-xl"><i class="fa-solid fa-user-shield"></i></div>
+          <div>
+            <h2 id="modalTitle" class="text-xl font-bold">用户账户中心</h2>
+            <p class="text-xs text-slate-400">商用级安全登录与注册</p>
+          </div>
+        </div>
+
+        <div class="flex p-1 bg-slate-900/80 rounded-xl mb-6">
+          <button id="tabLogin" onclick="switchTab('login')" class="flex-1 py-2 text-sm font-medium rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">登录</button>
+          <button id="tabRegister" onclick="switchTab('register')" class="flex-1 py-2 text-sm font-medium rounded-lg text-slate-400 hover:text-slate-200">注册</button>
+        </div>
+
+        <form id="authForm" class="space-y-4">
+          <div class="space-y-2">
+            <label class="text-sm text-slate-300">手机号 / 账号</label>
+            <input id="authAccount" class="ui-input" type="text" placeholder="输入手机号或用户名" required>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm text-slate-300">登录密码</label>
+            <input id="authPassword" class="ui-input" type="password" placeholder="输入您的密码" required>
+          </div>
+          <div id="registerOnlyFields" class="hidden space-y-4">
+            <div class="space-y-2">
+              <label class="text-sm text-slate-300">确认密码</label>
+              <input id="authConfirmPassword" class="ui-input" type="password" placeholder="再次输入密码">
+            </div>
+          </div>
+          
+          <div class="flex items-center justify-between text-xs py-1">
+            <label class="flex items-center gap-2 text-slate-400 cursor-pointer">
+              <input type="checkbox" class="rounded border-slate-600 bg-slate-800 text-emerald-500"> 记住登录状态
+            </label>
+            <a href="#" class="text-emerald-400 hover:underline">忘记密码？</a>
+          </div>
+
+          <button type="submit" id="authSubmitBtn" class="ui-btn ui-btn-primary w-full mt-2">立即进入平台</button>
+          <p id="authStatus" class="text-center text-xs text-slate-400 mt-4">支持账号密码极速登录</p>
+        </form>
+      </div>
+    </div>
+
+    <main class="mt-4 md:mt-6 grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-6">
+      <section class="xl:col-span-8 token-card overflow-hidden">
+        <div class="grid-8pt p-4 md:p-6">
+          <div class="flex flex-col gap-3 md:gap-4">
+            <span class="inline-flex items-center w-fit px-3 py-1 text-xs rounded-full bg-emerald-500/20 text-emerald-300">智能寄存·洗护·健康</span>
+            <h1 class="text-2xl md:text-3xl xl:text-4xl font-extrabold leading-tight">让爱宠每一次托管都可追踪、可感知、可安心</h1>
+            <p class="text-sm md:text-base text-slate-300 max-w-2xl">统一8pt栅格与Design Token驱动，覆盖375/414/768/1440断点，交互状态与可访问性对齐WCAG 2.1 AA。</p>
+            <div class="flex flex-wrap gap-3">
+              <button id="btnNearbyBooking" class="ui-btn ui-btn-primary"><i class="fa-solid fa-location-dot mr-2"></i>附近柜体预约</button>
+              <button id="btnViewStatus" class="ui-btn border border-slate-600 bg-slate-800/80 text-slate-100 hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-sky-400">查看实时状态</button>
+            </div>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1600&q=80" alt="宠物在智能舱内被照护" class="w-full h-56 md:h-72 xl:h-96 object-cover">
+      </section>
+
+      <aside id="bookingForm" class="xl:col-span-4 token-card p-4 md:p-5 space-y-4">
+        <h2 class="text-lg font-bold">快速预约</h2>
+        <div class="space-y-3">
+          <label class="text-sm text-slate-300" for="petName">宠物昵称</label>
+          <input id="petName" class="ui-input" type="text" placeholder="例如：小花" aria-label="宠物昵称输入框">
+        </div>
+        <div class="space-y-3">
+          <label class="text-sm text-slate-300" for="ownerPhone">联系电话</label>
+          <input id="ownerPhone" class="ui-input" type="tel" placeholder="例如：13800001234" aria-label="主人手机号输入框">
+        </div>
+        <div class="space-y-3">
+          <label class="text-sm text-slate-300" for="service">服务类型</label>
+          <select id="service" class="ui-input" aria-label="服务类型选择">
+            <option value="20" data-name="寄存2小时">寄存2小时 ¥20</option>
+            <option value="78" data-name="寄存+洗澡">寄存+洗澡 ¥78</option>
+            <option value="148" data-name="寄存+体检">寄存+体检 ¥148</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm text-slate-300">增值服务</label>
+          <div class="grid grid-cols-2 gap-2" id="addonGroup">
+            <button type="button" class="addon-option text-xs px-3 py-2 rounded-lg border border-slate-600 bg-slate-800/70" data-name="美容造型" data-price="88">美容造型 +¥88</button>
+            <button type="button" class="addon-option text-xs px-3 py-2 rounded-lg border border-slate-600 bg-slate-800/70" data-name="驱虫护理" data-price="38">驱虫护理 +¥38</button>
+            <button type="button" class="addon-option text-xs px-3 py-2 rounded-lg border border-slate-600 bg-slate-800/70" data-name="夜间陪护" data-price="28">夜间陪护 +¥28</button>
+            <button type="button" class="addon-option text-xs px-3 py-2 rounded-lg border border-slate-600 bg-slate-800/70" data-name="喂药照护" data-price="18">喂药照护 +¥18</button>
+          </div>
+        </div>
+        <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+          <div class="text-xs text-slate-400">预估费用</div>
+          <div id="orderTotal" class="text-xl font-bold text-emerald-300 mt-1">¥20</div>
+        </div>
+        <button id="submitOrder" class="ui-btn ui-btn-primary w-full">创建订单</button>
+        <div id="formStatus" class="text-xs text-slate-400">提交后将自动匹配最近可用柜体</div>
+      </aside>
+    </main>
+
+    <section id="statusSection" class="mt-4 md:mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+      <article class="token-card p-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">A03 柜体</h3>
+          <span class="text-xs px-2 py-1 rounded-full bg-emerald-500/20 text-emerald-300">运行中</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-300">温度24°C · 湿度52% · 空气优</p>
+        <div class="mt-4 h-2 rounded-full bg-slate-700">
+          <div class="h-2 rounded-full bg-emerald-400 w-4/5"></div>
+        </div>
+        <p class="mt-2 text-xs text-slate-400">健康评分 91/100</p>
+      </article>
+      <article class="token-card p-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">今日订单</h3>
+          <i class="fa-solid fa-chart-line text-sky-300"></i>
+        </div>
+        <p class="mt-2 text-sm text-slate-300">完成 138 单，较昨日 +12%</p>
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1200&q=80" alt="运营后台图表展示" class="mt-3 rounded-xl w-full h-28 object-cover">
+      </article>
+      <article class="token-card p-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold">服务评价</h3>
+          <span class="text-xs px-2 py-1 rounded-full bg-sky-500/20 text-sky-300">4.9/5</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-300">近7天好评率 98.2%</p>
+        <div class="mt-4 flex items-center gap-2 text-amber-300">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+      </article>
+    </section>
+    <section class="mt-4 md:mt-6 token-card p-4 md:p-5">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="text-lg font-bold">最近订单</h2>
+        <button id="clearOrders" class="text-xs px-3 py-2 rounded-lg border border-slate-600 hover:bg-slate-800">清空记录</button>
+      </div>
+      <div id="recentOrders" class="mt-4 space-y-3"></div>
+    </section>
+  </div>
+  <script src="./assets/js/prototype.js"></script>
+</body>
+</html>

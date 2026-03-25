@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI宠空间 · 运营后台高保真</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/tokens.css">
+</head>
+<body>
+  <div class="max-w-[1440px] mx-auto p-4 md:p-6 xl:p-8">
+    <div class="grid grid-cols-1 xl:grid-cols-[260px_1fr] gap-4 md:gap-6">
+      <aside class="token-card p-4 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center"><i class="fa-solid fa-shield-dog"></i></div>
+          <div>
+            <p class="text-sm font-semibold">杭州一店后台</p>
+            <p class="text-xs text-slate-400">实时运营中</p>
+          </div>
+        </div>
+        <nav class="space-y-2 text-sm">
+          <button class="admin-tab w-full text-left rounded-lg bg-emerald-500/20 text-emerald-300 px-3 py-2" data-target="dashboardPanel">数据统计</button>
+          <button class="admin-tab w-full text-left rounded-lg border border-slate-700 px-3 py-2 hover:bg-slate-800" data-target="bookingPanel">预约管理</button>
+          <button class="admin-tab w-full text-left rounded-lg border border-slate-700 px-3 py-2 hover:bg-slate-800" data-target="userPanel">用户管理</button>
+        </nav>
+      </aside>
+
+      <main class="space-y-4 md:space-y-6">
+        <section id="dashboardPanel" class="admin-panel space-y-4 md:space-y-6">
+          <div class="token-card p-4 md:p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h1 class="text-xl md:text-2xl font-bold">数据统计看板</h1>
+                <p class="text-sm text-slate-400">高频低价策略执行看板</p>
+              </div>
+              <button class="ui-btn ui-btn-primary">导出日报</button>
+            </div>
+            <div class="mt-4 grid grid-cols-2 xl:grid-cols-4 gap-3">
+              <div class="rounded-xl bg-slate-900/80 border border-slate-700 p-3">
+                <p class="text-xs text-slate-400">今日订单</p>
+                <p class="text-2xl font-bold mt-1">538</p>
+                <p class="text-xs text-emerald-300 mt-1">+14.2%</p>
+              </div>
+              <div class="rounded-xl bg-slate-900/80 border border-slate-700 p-3">
+                <p class="text-xs text-slate-400">客单价</p>
+                <p class="text-2xl font-bold mt-1">¥47.6</p>
+                <p class="text-xs text-sky-300 mt-1">目标 ¥47</p>
+              </div>
+              <div class="rounded-xl bg-slate-900/80 border border-slate-700 p-3">
+                <p class="text-xs text-slate-400">复购率</p>
+                <p class="text-2xl font-bold mt-1">8.9%</p>
+                <p class="text-xs text-emerald-300 mt-1">达成 T+7 目标</p>
+              </div>
+              <div class="rounded-xl bg-slate-900/80 border border-slate-700 p-3">
+                <p class="text-xs text-slate-400">预算使用</p>
+                <p class="text-2xl font-bold mt-1">¥74万</p>
+                <p class="text-xs text-amber-300 mt-1">当周偏差 +2.1%</p>
+              </div>
+            </div>
+          </div>
+          <div class="token-card p-4 md:p-5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-bold">趋势图（近7天）</h2>
+              <span class="text-xs px-2 py-1 rounded-full bg-slate-800 border border-slate-700">更新于 10:00</span>
+            </div>
+            <div class="mt-4 h-48 rounded-xl border border-slate-700 bg-slate-900/70 p-3 flex items-end gap-2">
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[42%]"></div>
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[52%]"></div>
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[49%]"></div>
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[61%]"></div>
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[58%]"></div>
+              <div class="flex-1 rounded-md bg-emerald-500/70 h-[74%]"></div>
+              <div class="flex-1 rounded-md bg-sky-500/80 h-[67%]"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="bookingPanel" class="admin-panel hidden token-card p-4 md:p-5">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-lg font-bold">预约管理</h2>
+              <p class="text-sm text-slate-400">预约检索、状态流转、履约调度</p>
+            </div>
+            <button class="ui-btn ui-btn-primary">新建预约</button>
+          </div>
+          <div class="mt-4 grid grid-cols-2 xl:grid-cols-4 gap-3">
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">总预约</p>
+              <p class="text-xl font-bold mt-1" id="bookingCountAll">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">待派单</p>
+              <p class="text-xl font-bold mt-1 text-amber-300" id="bookingCountPending">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">处理中</p>
+              <p class="text-xl font-bold mt-1 text-emerald-300" id="bookingCountProcessing">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">已完成</p>
+              <p class="text-xl font-bold mt-1 text-sky-300" id="bookingCountDone">0</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+            <input id="bookingSearchInput" class="ui-input" placeholder="搜索手机号/订单号/宠物名">
+            <select id="bookingStatusFilter" class="ui-input"><option value="全部状态">全部状态</option><option value="待派单">待派单</option><option value="处理中">处理中</option><option value="已完成">已完成</option></select>
+            <select id="bookingStoreFilter" class="ui-input"><option value="全部门店">全部门店</option><option value="杭州一店">杭州一店</option><option value="杭州二店">杭州二店</option></select>
+          </div>
+          <div id="bookingFeedback" class="mt-3 text-xs text-slate-400">可在此查看用户端新提交预约，并进行状态流转。</div>
+          <div class="mt-4 overflow-auto">
+            <table class="w-full text-sm">
+              <thead class="text-slate-400">
+                <tr class="border-b border-slate-700">
+                  <th class="text-left py-2">预约号</th>
+                  <th class="text-left py-2">用户</th>
+                  <th class="text-left py-2">服务</th>
+                  <th class="text-left py-2">时间</th>
+                  <th class="text-left py-2">状态</th>
+                  <th class="text-left py-2">操作</th>
+                </tr>
+              </thead>
+              <tbody id="bookingTableBody"></tbody>
+            </table>
+            <div id="bookingEmpty" class="hidden text-sm text-slate-400 py-4">暂无符合条件的预约记录。</div>
+          </div>
+        </section>
+
+        <section id="userPanel" class="admin-panel hidden token-card p-4 md:p-5">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-lg font-bold">用户管理</h2>
+              <p class="text-sm text-slate-400">用户档案、会员等级、生命周期运营</p>
+            </div>
+            <button class="ui-btn ui-btn-primary">新增用户</button>
+          </div>
+          <div class="mt-4 grid grid-cols-2 xl:grid-cols-4 gap-3">
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">用户总数</p>
+              <p class="text-xl font-bold mt-1" id="userCountAll">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">活跃用户</p>
+              <p class="text-xl font-bold mt-1 text-emerald-300" id="userCountActive">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">沉睡用户</p>
+              <p class="text-xl font-bold mt-1 text-amber-300" id="userCountDormant">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">30天平均复购</p>
+              <p class="text-xl font-bold mt-1 text-sky-300" id="userAvgRepurchase">0%</p>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+            <input id="userSearchInput" class="ui-input" placeholder="搜索昵称/手机号">
+            <select id="userLevelFilter" class="ui-input"><option value="全部会员等级">全部会员等级</option><option value="普通">普通</option><option value="白银">白银</option><option value="黄金">黄金</option><option value="铂金">铂金</option></select>
+            <select id="userActiveFilter" class="ui-input"><option value="全部活跃状态">全部活跃状态</option><option value="活跃">活跃</option><option value="沉睡">沉睡</option></select>
+          </div>
+          <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3">
+            <select id="userSegmentFilter" class="ui-input"><option value="全部标签">全部标签</option><option value="高价值用户">高价值用户</option><option value="高流失风险">高流失风险</option><option value="成长用户">成长用户</option></select>
+            <select id="campaignTemplateSelect" class="ui-input"><option value="复购券包A">复购券包A（满100减20）</option><option value="召回券包B">召回券包B（寄存5折）</option><option value="高客单礼包C">高客单礼包C（洗护升级）</option></select>
+            <button id="runCampaignBtn" class="ui-btn ui-btn-primary">一键触达当前分群</button>
+          </div>
+          <div id="userFeedback" class="mt-3 text-xs text-slate-400">用户画像将根据预约订单自动聚合生成。</div>
+          <div class="mt-4 overflow-auto">
+            <table class="w-full text-sm">
+              <thead class="text-slate-400">
+                <tr class="border-b border-slate-700">
+                  <th class="text-left py-2">用户</th>
+                  <th class="text-left py-2">手机号</th>
+                  <th class="text-left py-2">等级</th>
+                  <th class="text-left py-2">累计订单</th>
+                  <th class="text-left py-2">30天复购</th>
+                  <th class="text-left py-2">活跃度</th>
+                  <th class="text-left py-2">用户标签</th>
+                  <th class="text-left py-2">操作</th>
+                </tr>
+              </thead>
+              <tbody id="userTableBody"></tbody>
+            </table>
+            <div id="userEmpty" class="hidden text-sm text-slate-400 py-4">暂无符合条件的用户画像记录。</div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 xl:grid-cols-4 gap-3">
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">高价值用户</p>
+              <p class="text-xl font-bold mt-1 text-fuchsia-300" id="segmentHighValueCount">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">高流失风险</p>
+              <p class="text-xl font-bold mt-1 text-amber-300" id="segmentChurnCount">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">成长用户</p>
+              <p class="text-xl font-bold mt-1 text-sky-300" id="segmentGrowthCount">0</p>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+              <p class="text-xs text-slate-400">自动化触达次数</p>
+              <p class="text-xl font-bold mt-1 text-emerald-300" id="campaignSendCount">0</p>
+            </div>
+          </div>
+          <div class="mt-4 overflow-auto">
+            <table class="w-full text-sm">
+              <thead class="text-slate-400">
+                <tr class="border-b border-slate-700">
+                  <th class="text-left py-2">触达时间</th>
+                  <th class="text-left py-2">分群</th>
+                  <th class="text-left py-2">模板</th>
+                  <th class="text-left py-2">触达人数</th>
+                  <th class="text-left py-2">预计转化</th>
+                  <th class="text-left py-2">实际转化</th>
+                </tr>
+              </thead>
+              <tbody id="campaignLogBody"></tbody>
+            </table>
+            <div id="campaignLogEmpty" class="hidden text-sm text-slate-400 py-4">暂无触达记录，点击“一键触达当前分群”后自动生成。</div>
+          </div>
+          <div class="mt-5 rounded-xl border border-slate-700 bg-slate-900/60 p-4 space-y-4">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h3 class="text-base font-bold">自动化策略引擎</h3>
+                <p class="text-xs text-slate-400 mt-1">按规则自动识别目标用户并执行触达，同时输出A/B效果对比</p>
+              </div>
+              <button id="runRuleEngineBtn" class="ui-btn ui-btn-primary">执行策略引擎</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <select id="ruleTypeSelect" class="ui-input">
+                <option value="churn_guard">流失预警召回（7天未下单且复购&lt;20%）</option>
+                <option value="vip_boost">高价值复购提升（黄金/铂金且复购≥35%）</option>
+                <option value="growth_nurture">成长用户孵化（订单2-5单）</option>
+              </select>
+              <select id="strategyTemplateSelect" class="ui-input">
+                <option value="召回券包B">召回券包B（寄存5折）</option>
+                <option value="复购券包A">复购券包A（满100减20）</option>
+                <option value="高客单礼包C">高客单礼包C（洗护升级）</option>
+              </select>
+              <button id="runABTestBtn" class="ui-btn border border-slate-600 bg-slate-800 hover:bg-slate-700 text-slate-100">运行A/B对比</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <select id="abTemplateA" class="ui-input">
+                <option value="复购券包A">A组：复购券包A</option>
+                <option value="召回券包B">A组：召回券包B</option>
+                <option value="高客单礼包C">A组：高客单礼包C</option>
+              </select>
+              <select id="abTemplateB" class="ui-input">
+                <option value="召回券包B">B组：召回券包B</option>
+                <option value="复购券包A">B组：复购券包A</option>
+                <option value="高客单礼包C">B组：高客单礼包C</option>
+              </select>
+            </div>
+            <div id="ruleFeedback" class="text-xs text-slate-400">策略引擎待执行。</div>
+            <div class="grid grid-cols-2 xl:grid-cols-4 gap-3">
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">策略执行次数</p>
+                <p class="text-xl font-bold mt-1 text-emerald-300" id="ruleRunCount">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">累计触达人次</p>
+                <p class="text-xl font-bold mt-1 text-sky-300" id="ruleTouchedCount">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">A/B实验次数</p>
+                <p class="text-xl font-bold mt-1 text-fuchsia-300" id="abRunCount">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">最近优胜模板</p>
+                <p class="text-sm font-bold mt-2 text-amber-300" id="abLatestWinner">-</p>
+              </div>
+            </div>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-400">
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2">执行时间</th>
+                    <th class="text-left py-2">策略</th>
+                    <th class="text-left py-2">模板</th>
+                    <th class="text-left py-2">命中人数</th>
+                    <th class="text-left py-2">预计转化</th>
+                    <th class="text-left py-2">实际转化</th>
+                  </tr>
+                </thead>
+                <tbody id="ruleLogBody"></tbody>
+              </table>
+              <div id="ruleLogEmpty" class="hidden text-sm text-slate-400 py-4">暂无策略执行记录。</div>
+            </div>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-400">
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2">实验时间</th>
+                    <th class="text-left py-2">策略</th>
+                    <th class="text-left py-2">A模板</th>
+                    <th class="text-left py-2">B模板</th>
+                    <th class="text-left py-2">A转化</th>
+                    <th class="text-left py-2">B转化</th>
+                    <th class="text-left py-2">优胜</th>
+                  </tr>
+                </thead>
+                <tbody id="abReportBody"></tbody>
+              </table>
+              <div id="abReportEmpty" class="hidden text-sm text-slate-400 py-4">暂无A/B实验记录。</div>
+            </div>
+          </div>
+          <div class="mt-5 rounded-xl border border-slate-700 bg-slate-900/60 p-4 space-y-4">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <h3 class="text-base font-bold">策略编排中心</h3>
+                <p class="text-xs text-slate-400 mt-1">多策略优先级编排、冲突处理、自动调度与分渠道ROI分析</p>
+              </div>
+              <button id="runOrchestrationBtn" class="ui-btn ui-btn-primary">执行编排</button>
+            </div>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-400">
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2">启用</th>
+                    <th class="text-left py-2">策略</th>
+                    <th class="text-left py-2">优先级</th>
+                    <th class="text-left py-2">默认模板</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3"><input id="orRuleChurn" type="checkbox" checked></td>
+                    <td class="py-3">流失预警召回</td>
+                    <td class="py-3"><input id="orPriorityChurn" type="number" class="ui-input max-w-[110px]" value="1" min="1"></td>
+                    <td class="py-3">召回券包B</td>
+                  </tr>
+                  <tr class="border-b border-slate-800">
+                    <td class="py-3"><input id="orRuleVip" type="checkbox" checked></td>
+                    <td class="py-3">高价值复购提升</td>
+                    <td class="py-3"><input id="orPriorityVip" type="number" class="ui-input max-w-[110px]" value="2" min="1"></td>
+                    <td class="py-3">高客单礼包C</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3"><input id="orRuleGrowth" type="checkbox" checked></td>
+                    <td class="py-3">成长用户孵化</td>
+                    <td class="py-3"><input id="orPriorityGrowth" type="number" class="ui-input max-w-[110px]" value="3" min="1"></td>
+                    <td class="py-3">复购券包A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <select id="orConflictPolicy" class="ui-input">
+                <option value="highest_priority">冲突策略：最高优先级命中</option>
+                <option value="first_match">冲突策略：首命中生效</option>
+                <option value="merge_all">冲突策略：合并触达</option>
+              </select>
+              <select id="orScheduleType" class="ui-input">
+                <option value="manual">调度：手动执行</option>
+                <option value="daily">调度：每日 10:00</option>
+                <option value="weekly">调度：每周一 10:00</option>
+              </select>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs text-slate-300 flex items-center" id="orNextRunHint">下一次执行：手动触发</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm flex items-center gap-2"><input id="orChannelSms" type="checkbox" checked>短信渠道</label>
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm flex items-center gap-2"><input id="orChannelPush" type="checkbox" checked>Push渠道</label>
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm flex items-center gap-2"><input id="orChannelWecom" type="checkbox" checked>企微渠道</label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs text-slate-300 flex items-center justify-between gap-2">触达冷却(小时)<input id="orCooldownHours" type="number" class="ui-input max-w-[110px]" value="24" min="0"></label>
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs text-slate-300 flex items-center justify-between gap-2">短信日上限<input id="orLimitSms" type="number" class="ui-input max-w-[110px]" value="200" min="1"></label>
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs text-slate-300 flex items-center justify-between gap-2">Push日上限<input id="orLimitPush" type="number" class="ui-input max-w-[110px]" value="500" min="1"></label>
+              <label class="rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs text-slate-300 flex items-center justify-between gap-2">企微日上限<input id="orLimitWecom" type="number" class="ui-input max-w-[110px]" value="300" min="1"></label>
+            </div>
+            <div id="orchestrationFeedback" class="text-xs text-slate-400">策略编排待执行。</div>
+            <div class="grid grid-cols-2 xl:grid-cols-6 gap-3">
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">编排执行次数</p>
+                <p class="text-xl font-bold mt-1 text-emerald-300" id="orRunCount">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">编排触达人数</p>
+                <p class="text-xl font-bold mt-1 text-sky-300" id="orTargetCount">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">ROI最佳渠道</p>
+                <p class="text-sm font-bold mt-2 text-fuchsia-300" id="orBestChannel">-</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">冲突用户处理量</p>
+                <p class="text-xl font-bold mt-1 text-amber-300" id="orConflictResolved">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">冷却拦截量</p>
+                <p class="text-xl font-bold mt-1 text-amber-300" id="orBlockedCooldown">0</p>
+              </div>
+              <div class="rounded-xl border border-slate-700 bg-slate-900/70 p-3">
+                <p class="text-xs text-slate-400">限流拦截量</p>
+                <p class="text-xl font-bold mt-1 text-amber-300" id="orBlockedLimit">0</p>
+              </div>
+            </div>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-400">
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2">执行时间</th>
+                    <th class="text-left py-2">用户</th>
+                    <th class="text-left py-2">命中策略</th>
+                    <th class="text-left py-2">模板</th>
+                    <th class="text-left py-2">渠道</th>
+                    <th class="text-left py-2">状态</th>
+                  </tr>
+                </thead>
+                <tbody id="orQueueBody"></tbody>
+              </table>
+              <div id="orQueueEmpty" class="hidden text-sm text-slate-400 py-4">暂无编排队列记录。</div>
+            </div>
+            <div class="overflow-auto">
+              <table class="w-full text-sm">
+                <thead class="text-slate-400">
+                  <tr class="border-b border-slate-700">
+                    <th class="text-left py-2">渠道</th>
+                    <th class="text-left py-2">触达次数</th>
+                    <th class="text-left py-2">转化人数</th>
+                    <th class="text-left py-2">成本(¥)</th>
+                    <th class="text-left py-2">收益(¥)</th>
+                    <th class="text-left py-2">ROI</th>
+                  </tr>
+                </thead>
+                <tbody id="channelRoiBody"></tbody>
+              </table>
+              <div id="channelRoiEmpty" class="hidden text-sm text-slate-400 py-4">暂无渠道ROI数据。</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="./assets/js/admin.js"></script>
+</body>
+</html>

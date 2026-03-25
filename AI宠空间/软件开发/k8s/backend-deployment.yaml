@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petcare-backend
+  labels:
+    app: petcare-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: petcare-backend
+  template:
+    metadata:
+      labels:
+        app: petcare-backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3001"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: petcare-backend
+        image: <IMAGE_TAG> # To be replaced by GitHub Actions
+        ports:
+        - containerPort: 3001
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: petcare-db-secret
+              key: postgres-user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: petcare-db-secret
+              key: postgres-password
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: petcare-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: petcare-config
+              key: POSTGRES_DB
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: petcare-config
+              key: REDIS_HOST
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: petcare-db-secret
+              key: jwt-secret
+        livenessProbe:
+          httpGet:
+            path: /v1/health
+            port: 3001
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /v1/health
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petcare-backend-service
+spec:
+  selector:
+    app: petcare-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+  type: ClusterIP
